@@ -1,6 +1,4 @@
-// Import API key from config.js (not tracked in git)
-// Make sure to create config.js from config.example.js with your API key
-const OPENWEATHER_API_KEY = window.OPENWEATHER_API_KEY || "";
+// API key will be loaded from load-env.js
 
 const searchBtn = document.getElementById("searchBtn");
 const locationBtn = document.getElementById("locationBtn");
@@ -205,7 +203,12 @@ function getWeatherByLocation() {
 
 // Fetch weather from OpenWeatherMap
 async function fetchWeather(query) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${OPENWEATHER_API_KEY}&units=metric`;
+    const apiKey = window.OPENWEATHER_API_KEY || "";
+    if (!apiKey) {
+        alert("API key not loaded!");
+        return;
+    }
+    const url = `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${apiKey}&units=metric`;
 
     try {
         const response = await fetch(url);
@@ -213,6 +216,11 @@ async function fetchWeather(query) {
 
         if (data.cod == "404") {
             alert("City not found!");
+            return;
+        }
+
+        if (data.cod == "401") {
+            alert("Invalid API key!");
             return;
         }
 
