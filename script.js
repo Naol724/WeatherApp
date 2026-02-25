@@ -1,4 +1,5 @@
 // API key will be loaded from load-env.js
+// For deployment, set OPENWEATHER_API_KEY in your hosting environment variables
 
 const searchBtn = document.getElementById("searchBtn");
 const locationBtn = document.getElementById("locationBtn");
@@ -203,11 +204,15 @@ function getWeatherByLocation() {
 
 // Fetch weather from OpenWeatherMap
 async function fetchWeather(query) {
+    // Try to get API key from window (load-env.js) or environment variable
     const apiKey = window.OPENWEATHER_API_KEY || "";
+    
     if (!apiKey) {
-        alert("API key not loaded!");
+        alert("API key not configured! Please check setup instructions.");
+        console.error("API key missing. For local: create load-env.js. For deployment: set environment variable.");
         return;
     }
+    
     const url = `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${apiKey}&units=metric`;
 
     try {
@@ -220,14 +225,14 @@ async function fetchWeather(query) {
         }
 
         if (data.cod == "401") {
-            alert("Invalid API key!");
+            alert("Invalid API key! Please check your configuration.");
             return;
         }
 
         displayWeather(data);
     } catch (error) {
         alert("Error fetching weather!");
-        console.error(error);
+        console.error("Fetch error:", error);
     }
 }
 

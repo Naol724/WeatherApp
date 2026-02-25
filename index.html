@@ -135,7 +135,17 @@
 
     </div>
 
-    <script src="load-env.js"></script>
+    <!-- Load API key configuration (gitignored for security) -->
+    <script>
+        // Try to load load-env.js if it exists (local development)
+        // For deployment, you'll set the API key in your hosting platform's environment variables
+        var script = document.createElement('script');
+        script.src = 'load-env.js';
+        script.onerror = function() {
+            console.warn('load-env.js not found. Make sure to configure API key for deployment.');
+        };
+        document.head.appendChild(script);
+    </script>
     <script src="script.js"></script>
 
 </body>
