@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Slow smooth floating animation */
+        @keyframes slowFloat {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .slow-float {
+            animation: slowFloat 4s ease-in-out infinite;
+        }
+
+        /* Suggestion item styles */
+        .suggestion-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .suggestion-item.active {
+            background-color: #dbeafe;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center 
+             bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700
+             px-3 sm:px-6 lg:px-8">
+
+    <div class="w-full 
+                max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg
+                bg-white 
+                p-5 sm:p-8 lg:p-10 
+                rounded-3xl 
+                text-center 
+                shadow-2xl">
+
+        <!-- Title -->
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6">
+            Weather App
+        </h2>
+
+        <!-- Search Box -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-5">
+            <div class="flex-1 relative">
+                <input type="text" id="cityInput" placeholder="Enter city name..." 
+                       autocomplete="off"
+                       class="w-full px-4 py-3 
+                       border border-gray-300 
+                       rounded-xl 
+                       text-sm sm:text-base
+                       focus:outline-none 
+                       focus:ring-2 
+                       focus:ring-blue-500">
+                <div id="suggestions" class="absolute w-full bg-white border border-gray-300 rounded-xl mt-1 max-h-60 overflow-y-auto shadow-lg z-10 hidden"></div>
+            </div>
+            <button id="searchBtn" class="px-4 py-3 
+                       bg-blue-600 
+                       hover:bg-blue-700 
+                       text-white 
+                       rounded-xl 
+                       transition duration-300 
+                       text-sm sm:text-base">
+                Search
+            </button>
+        </div>
+
+        <p class="text-gray-500 my-4 text-sm sm:text-base">— or —</p>
+
+        <!-- Location Button -->
+        <button id="locationBtn" class="w-full 
+                   bg-green-600 
+                   hover:bg-green-700 
+                   text-white 
+                   py-3 
+                   rounded-xl 
+                   transition duration-300 
+                   mb-8 
+                   text-sm sm:text-base">
+            Use My Location
+        </button>
+
+        <!-- Weather Box -->
+        <div id="weatherBox" class="hidden space-y-3">
+
+            <h3 id="cityName" class="text-lg sm:text-xl lg:text-2xl font-semibold">
+            </h3>
+
+            <div class="flex justify-center">
+                <img id="weatherIcon" alt="weather icon" class="w-24 sm:w-28 md:w-32 slow-float">
+            </div>
+
+            <p id="temperature" class="text-3xl sm:text-4xl lg:text-5xl font-bold">
+            </p>
+
+            <p id="description" class="text-gray-600 text-sm sm:text-base">
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
