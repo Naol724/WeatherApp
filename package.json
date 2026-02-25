@@ -1,0 +1,11 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Weather application with OpenWeatherMap API",
+  "scripts": {
+    "build": "bash build.sh"
+  },
+  "keywords": ["weather", "api"],
+  "author": "Naol724",
+  "license": "MIT"
+}
