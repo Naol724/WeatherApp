@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Weather application with OpenWeatherMap API",
   "scripts": {
-    "build": "bash build.sh"
+    "build": "node build.js"
   },
   "keywords": ["weather", "api"],
   "author": "Naol724",

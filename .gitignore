@@ -1,3 +1,5 @@
 # Ignore API keys
 .env
-config.js
+load-env.js
+node_modules/
+s
