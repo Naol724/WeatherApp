@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Weather application with OpenWeatherMap API",
   "scripts": {
+    "dev": "npx --yes serve . -p 3000",
+    "start": "npx --yes serve . -p 3000",
     "build": "node build.js"
   },
   "keywords": ["weather", "api"],
